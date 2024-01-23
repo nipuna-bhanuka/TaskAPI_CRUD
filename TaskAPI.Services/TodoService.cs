@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Models;
+using TaskAPI.Services.Todos;
 
 namespace TaskAPI.Services
 {
@@ -47,6 +48,11 @@ namespace TaskAPI.Services
 
             return todos;
 
+        }
+
+        public Todo GetTodoById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

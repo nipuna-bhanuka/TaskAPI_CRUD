@@ -11,7 +11,7 @@ using TaskAPI.DataAccess;
 
 namespace TaskAPI.DataAccess.Migrations
 {
-    [DbContext(typeof(TodoDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240115084526_initial")]
     partial class initial
     {

@@ -11,7 +11,7 @@ using TaskAPI.DataAccess;
 
 namespace TaskAPI.DataAccess.Migrations
 {
-    [DbContext(typeof(TodoDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240115113026_seedData")]
     partial class seedData
     {
