@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskAPI.Models;
 using TaskAPI.Services.Dtos;
 using TaskAPI.Services.Todos;
 
@@ -31,10 +32,14 @@ namespace TaskAPI.Controllers
             return Ok(mapperTodos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetTodo")]
         public ActionResult<TodoDto> GetTodoById(int id)
         {
             var myTodo = _todoService.GetTodoById(id);
+            if(myTodo == null)
+            {
+                return NotFound();
+            }
             var mapperTodo = _mapper.Map<TodoDto>(myTodo);
             return Ok(mapperTodo);
         }
@@ -52,9 +57,45 @@ namespace TaskAPI.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult<CreateTodoDto> AddTodo(CreateTodoDto todo)
+        {
+            var todoEntity = _mapper.Map<Todo>(todo);
+            var addEntity = _todoService.AddTodo(todoEntity);
 
+            var todoForReturn = _mapper.Map<TodoDto>(addEntity);
 
+            return CreatedAtRoute("GetTodo", new {id= todoForReturn.Id }, todoForReturn);
+        }
 
+        [HttpPut("{todoid}")]
+        public ActionResult UpdateTodo(int todoid,UpdateTodoDto todo)
+        {
+            var updatingTodo = _todoService.GetTodoById(todoid);
+            if(updatingTodo is null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(todo, updatingTodo);
+            _todoService.UpdateTodo(updatingTodo);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{todoid}")]
+
+        public ActionResult DeleteTodo(int todoid)
+        {
+            var deleteTodo = _todoService.GetTodoById(todoid);
+            if(deleteTodo is null)
+            {
+                return BadRequest();
+            }
+
+            _todoService.DeleteTodo(deleteTodo);
+            return NoContent();
+        }
 
     }
 }

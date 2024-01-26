@@ -26,6 +26,25 @@ namespace TaskAPI.Services.Todos
         {
             return _dbContext.Todos.Where(t => t.AuthorId == authorId).ToList();
         }
+
+        public Todo AddTodo(Todo todo)
+        {
+            _dbContext.Todos.Add(todo);
+            _dbContext.SaveChanges();
+
+            return _dbContext.Todos.Find(todo.Id);
+        }
+
+        public void UpdateTodo(Todo todo)
+        {
+            _dbContext.SaveChanges();
+        }
+
+        public void DeleteTodo(Todo todo)
+        {
+            _dbContext.Remove(todo);
+            _dbContext.SaveChanges();
+        }
     }
 }
 
