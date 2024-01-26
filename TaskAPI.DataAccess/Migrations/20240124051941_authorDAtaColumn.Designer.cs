@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPI.DataAccess;
 
@@ -11,9 +12,11 @@ using TaskAPI.DataAccess;
 namespace TaskAPI.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240124051941_authorDAtaColumn")]
+    partial class authorDAtaColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,11 +48,6 @@ namespace TaskAPI.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("JobRole")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -66,7 +64,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "23",
                             AuthorName = "Martin Wickramasinghe",
                             City = "Colombo",
-                            JobRole = "Developer",
                             Street = "Street1"
                         },
                         new
@@ -75,7 +72,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "25",
                             AuthorName = "Kumarathunga Munidasa",
                             City = "Colombo",
-                            JobRole = "Developer",
                             Street = "Street1"
                         },
                         new
@@ -84,7 +80,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "27",
                             AuthorName = "Mahagama Sekara",
                             City = "Colombo",
-                            JobRole = "QA",
                             Street = "Street2"
                         });
                 });
@@ -130,9 +125,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            Created = new DateTime(2024, 1, 26, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2562),
+                            Created = new DateTime(2024, 1, 24, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5078),
                             Description = "Description 1",
-                            Due = new DateTime(2024, 1, 31, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2572),
+                            Due = new DateTime(2024, 1, 29, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5091),
                             Status = 0,
                             Title = "Get books for school"
                         },
@@ -140,9 +135,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 2,
                             AuthorId = 2,
-                            Created = new DateTime(2024, 1, 26, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2580),
+                            Created = new DateTime(2024, 1, 24, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5099),
                             Description = "Description 2",
-                            Due = new DateTime(2024, 1, 31, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2580),
+                            Due = new DateTime(2024, 1, 29, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5099),
                             Status = 0,
                             Title = "Get books for school2"
                         },
@@ -150,9 +145,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 3,
                             AuthorId = 3,
-                            Created = new DateTime(2024, 1, 26, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2582),
+                            Created = new DateTime(2024, 1, 24, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5101),
                             Description = "Description 3",
-                            Due = new DateTime(2024, 1, 31, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2583),
+                            Due = new DateTime(2024, 1, 29, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5101),
                             Status = 2,
                             Title = "Get books for school3"
                         },
@@ -160,9 +155,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 4,
                             AuthorId = 1,
-                            Created = new DateTime(2024, 1, 26, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2584),
+                            Created = new DateTime(2024, 1, 24, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5103),
                             Description = "Description 4",
-                            Due = new DateTime(2024, 1, 31, 13, 31, 45, 853, DateTimeKind.Local).AddTicks(2585),
+                            Due = new DateTime(2024, 1, 29, 10, 49, 41, 95, DateTimeKind.Local).AddTicks(5103),
                             Status = 0,
                             Title = "Get books for school4"
                         });

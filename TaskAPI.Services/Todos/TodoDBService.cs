@@ -21,5 +21,13 @@ namespace TaskAPI.Services.Todos
         {
             return _dbContext.Todos.Find(id);
         }
+
+        public List<Todo> GetTodosByAuthorId(int authorId)
+        {
+            return _dbContext.Todos.Where(t => t.AuthorId == authorId).ToList();
+        }
     }
 }
+
+//if check 2 parameters
+// return _dbContext.Todos.FirstOrDefault(t=>t.Id == Id && t.authorId == authorId);

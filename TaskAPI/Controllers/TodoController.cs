@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskAPI.Services.Dtos;
 using TaskAPI.Services.Todos;
 
 namespace TaskAPI.Controllers
@@ -13,25 +15,41 @@ namespace TaskAPI.Controllers
     public class TodoController : ControllerBase
     {
         private readonly ITodoRepository _todoService;
+        private readonly IMapper _mapper;
 
-        public TodoController(ITodoRepository repository)
+        public TodoController(ITodoRepository repository, IMapper mapper)
         {
             _todoService = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetTasks()
+        public ActionResult<ICollection<TodoDto>> GetTodos()
         {
             var myTodos = _todoService.AllTodos();
-            return Ok(myTodos);
+            var mapperTodos = _mapper.Map<ICollection<TodoDto>>(myTodos);
+            return Ok(mapperTodos);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTasks(int id)
+        public ActionResult<TodoDto> GetTodoById(int id)
         {
-            var myTodos = _todoService.AllTodos();
-            myTodos = myTodos.Where(t => t.Id == id).ToList();
-            return Ok(myTodos);
+            var myTodo = _todoService.GetTodoById(id);
+            var mapperTodo = _mapper.Map<TodoDto>(myTodo);
+            return Ok(mapperTodo);
+        }
+
+        [HttpGet("authorid/{id}")]  
+        public ActionResult<ICollection<TodoDto>> GetTodosByAuthorId(int id)
+        {
+            var authorTodos = _todoService.GetTodosByAuthorId(id);
+            if(authorTodos.Count == 0) 
+            {
+                return NotFound();
+            }
+            var mapperTods = _mapper.Map<TodoDto>(authorTodos);
+            return Ok(mapperTods);
+
         }
 
 

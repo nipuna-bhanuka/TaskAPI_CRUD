@@ -54,5 +54,10 @@ namespace TaskAPI.Services
         {
             throw new NotImplementedException();
         }
+
+        public List<Todo> GetTodosByAuthorId(int authorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

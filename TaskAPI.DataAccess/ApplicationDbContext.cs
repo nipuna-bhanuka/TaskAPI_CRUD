@@ -24,9 +24,9 @@ namespace TaskAPI.DataAccess
 
             modelBuilder.Entity<Author>().HasData(new Author[]
             {
-                new() { Id = 1 , AuthorName = "Martin Wickramasinghe"},
-                new() { Id = 2 , AuthorName = "Kumarathunga Munidasa"},
-                new() { Id = 3 , AuthorName = "Mahagama Sekara"}
+                new() { Id = 1 , AuthorName = "Martin Wickramasinghe", AddressNo = "23" , Street = "Street1" , City = "Colombo", JobRole = "Developer"},
+                new() { Id = 2 , AuthorName = "Kumarathunga Munidasa",AddressNo = "25" , Street = "Street1" , City = "Colombo", JobRole = "Developer"},
+                new() { Id = 3 , AuthorName = "Mahagama Sekara", AddressNo = "27" , Street = "Street2" , City = "Colombo", JobRole = "QA"}
             });
 
             modelBuilder.Entity<Todo>().HasData(new Todo[] 
